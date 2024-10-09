@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VetNet</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script src="../js/form-validation.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <img src="../img/logo-vetnet.png" class="logoHeader" />
+        </div>
+        <nav>    
+          <h1>¡Bienvenido <span th:text="${cliente.nombre}"></span>!</h1>
+          <a href="/cliente/all">USUARIOS</a>
+          <a href="/clientelogout">Cerrar Sesion</a>
+        </nav>
+      </div>
+    </header>
+    <main class="content">
+        <h1>Elije alguna de las siguientes opciones:</h1>
+        <hr />
+        <div class="servicios-container">
+            <a href="/mascota/all">
+          <div class="servicios-box">
+            <img src="../img/hospitall.png" alt="Hospitalizacion" />
+            <h2>Ver mis mascotas</h2>
+            <p>
+              Gestiona a tus mascotas registradas en nuestro portal.
+            </p>
+          </div>
+        </a>
+        <a href="/perfil">
+          <div class="servicios-box">
+            <img src="../img/vacuna.png" alt="Vacunación" />
+            <h2>Configuración de perfil</h2>
+            <p>
+              Gestiona, modifica o elimina tu perfil.
+            </p>
+          </div>
+          </a>
+          <div class="servicios-box">
+            <img src="../img/baño.png" alt="Aseo" />
+            <h2>Aseo</h2>
+            <p>
+              El aseo es escencial en el cuidado y salud de tu mascota. Realizamos baño, grooming
+              y desparasitación para mantener la higine y salud de tu amigo.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <hr />
+    <footer>
+      <div class="footer-content">
+        <div class="footer-info">
+          <p>&copy;VetNet</p>
+          <p>Dirección: Calle Ejemplo #123, Bogotá, Colombia</p>
+          <p>Teléfono:(601) 3114583672</p>
+          <p>Email: vetnet@gmail.com</p>
+        </div>
+        <div class="footer-social">
+          <a
+            class="iconoFooter"
+            href="https://www.facebook.com/tuempresa"
+            target="_blank"
+            title="Facebook"
+          >
+            <img src="../img/facebook.png" height="50" />
+          </a>
+          <a
+            class="iconoFooter"
+            href="https://www.instagram.com/tuempresa"
+            target="_blank"
+            title="Instagram"
+          >
+            <img src="../img/instagram.png" height="50" />
+          </a>
+          <a
+            class="iconoFooter"
+            href="https://www.twitter.com/tuempresa"
+            target="_blank"
+            title="X"
+          >
+            <img src="../img/x.png" height="50" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
