@@ -13,4 +13,6 @@ public interface MascotaService {
     public void update(Mascota mascota);
 
     public List<Mascota> SearchByClienteId(Long id);
+
+    Long countActivePets();
 }

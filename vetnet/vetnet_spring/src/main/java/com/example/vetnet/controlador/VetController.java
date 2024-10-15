@@ -80,7 +80,7 @@ public class VetController {
 public ResponseEntity<?> login(@RequestBody Veterinario veterinario, HttpSession session) {
     Veterinario encontrado = veterinarioService.SearchByCedula(veterinario.getCedula());
     if (encontrado != null && encontrado.getPassword().equals(veterinario.getPassword())) {
-        session.setAttribute("veterinarip", encontrado);
+        session.setAttribute("veterinario", encontrado);
         
         Map<String, Object> response = new HashMap<>();
         response.put("id", encontrado.getId()); 

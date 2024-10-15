@@ -23,9 +23,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.servlet.http.HttpSession;
 
 
-
-@RequestMapping("/mascota")
 @RestController
+@RequestMapping("/mascota")
 @CrossOrigin(origins = "http://localhost:4200")
 public class MascotaController {
     @Autowired
@@ -85,8 +84,10 @@ public class MascotaController {
         return "registro_mascotas";
     }
 
-    @PostMapping("/registrar")
-    public void registroMascota(@RequestBody Mascota mascota) {
+    @PostMapping("/registrar/{clienteId}")
+    public void registroMascota(@RequestBody Mascota mascota, @PathVariable("clienteId") Long clienteId) {
+        Cliente cliente = clienteService.SearchById(clienteId);
+        mascota.setCliente(cliente);
     /*Cliente cliente = clienteService.SearchById(clienteId);
     mascota.setCliente(cliente);*/
     mascotaService.add(mascota);
@@ -98,15 +99,20 @@ public class MascotaController {
         mascotaService.deleteById(id);
     }
 
-    @GetMapping("/modificar/{id}")
+   /*@GetMapping("/modificar/{id}")
     public String mostrarFormularioModificar(@PathVariable("id") Long id, Model model) {
         model.addAttribute("mascota", mascotaService.SearchById(id));
         return "modificar_mascota";
-    }
+    }*/
 
-    @PutMapping("/modificar/{id}")
-    public void actualizarMascota(@RequestBody Mascota mascota) {
-        mascotaService.update(mascota);
+    @PutMapping("/modificar/{id}/{clienteId}")
+    public void actualizarMascota(@RequestBody Mascota mascota, @PathVariable Long id, @PathVariable("clienteId") Long clienteId) {
+        Cliente cliente = clienteService.SearchById(clienteId);
+        Mascota mascotaExistente = mascotaService.SearchById(id);
+        if (mascotaExistente != null) {
+            mascota.setCliente(cliente); 
+            mascotaService.update(mascota);
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.vetnet.entidad;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Controller;
 
+import com.example.vetnet.repositorio.AdministradorRepository;
 import com.example.vetnet.repositorio.ClienteRepository;
 import com.example.vetnet.repositorio.DrogaRepository;
 import com.example.vetnet.repositorio.MascotaRepository;
@@ -35,6 +37,9 @@ public class DatabaseInit implements ApplicationRunner{
 
     @Autowired
     TratamientoRepository tratamientoRepository;
+
+    @Autowired
+    AdministradorRepository administradorRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -124,12 +129,12 @@ clienteRepository.save(new Cliente("carolina","carolina1234","carolina@gmail.com
 clienteRepository.save(new Cliente("angel","angel1234","angel@gmail.com",89123456,923875000)); */
         
 
-        mascotaRepository.save(new Mascota("Rex", "25kg", "Pastor Alemán", "Ninguna", "Activo", 5, "./img/jhony.jpg"));
-        mascotaRepository.save(new Mascota("Luna", "8kg", "Chihuahua", "Catarro", "Enferma", 3, "./img/Zeus.jpg"));
-        mascotaRepository.save(new Mascota("Pablo", "30kg", "Labrador", "Problemas de piel", "Activo", 7, "./img/pablo.jpg"));
-        mascotaRepository.save(new Mascota("Bella", "12kg", "Beagle", "Alérgica a los alimentos", "Recuperándose", 4, "./img/lucas.jpg"));
-        mascotaRepository.save(new Mascota("Charlie", "20kg", "Bulldog Francés", "Ninguna", "Activo", 6, "./img/miguel.jpg"));
-        mascotaRepository.save(new Mascota("Max", "25kg", "Pastor Alemán", "Ninguna", "Activo", 5, "./img/max.jpg"));
+        mascotaRepository.save(new Mascota("Rex", "25kg", "Pastor Alemán", "Moquillo", "Activo", 5, "https://es.mypet.com/wp-content/uploads/sites/23/2021/03/razas-de-perros-pastor-aleman-570x455-1.jpg"));
+        mascotaRepository.save(new Mascota("Luna", "8kg", "Chihuahua", "Catarro", "Inactivo", 3, "https://picartpetcare.com/wp-content/uploads/2020/05/CHIHUAHUA.jpg"));
+        mascotaRepository.save(new Mascota("Pablo", "30kg", "Labrador", "Problemas de piel", "Activo", 7, "https://labradoresdeabantueso.com/wp-content/uploads/2023/09/Foto-Labrador-1-Guia-min.jpg"));
+        mascotaRepository.save(new Mascota("Bella", "12kg", "Beagle", "Alérgica a los alimentos", "Inactivo", 4, "https://images.ctfassets.net/550nf1gumh01/6zwLKAfltciBljUmEdYP3n/21191083f31cb0a43647cddbf29de913/iStock-1411469044.jpg"));
+        mascotaRepository.save(new Mascota("Charlie", "20kg", "Bulldog Francés", "Fractura en pata trasera", "Activo", 6, "https://http2.mlstatic.com/D_NQ_NP_601857-MCO77229008668_072024-O.webp"));
+        mascotaRepository.save(new Mascota("Max", "25kg", "Pastor Alemán", "Epilepsia", "Activo", 5, "https://cdn.shopify.com/s/files/1/0268/6861/files/dog-1919406_960_720_grande.jpg?v=1530792114"));
 /*mascotaRepository.save(new Mascota("Bella", "20kg", "Labrador", "Alergias", "Juguetona", 3, "/img/bella.jpg"));
 mascotaRepository.save(new Mascota("Charlie", "22kg", "Beagle", "Ninguna", "Curioso", 4, "https://example.com/charlie.jpg"));
 mascotaRepository.save(new Mascota("Lucy", "15kg", "Golden Retriever", "Displasia", "Amigable", 6, "https://example.com/lucy.jpg"));
@@ -173,29 +178,28 @@ mascotaRepository.save(new Mascota("Kira", "21kg", "Setter", "Displasia", "Jugue
 mascotaRepository.save(new Mascota("Ace", "24kg", "Border Collie", "Alergias", "Protector", 3, "/img/ace.jpg"));
 mascotaRepository.save(new Mascota("Blue", "26kg", "Golden Retriever", "Ninguna", "Juguetón", 5, "https://example.com/blue.jpg"));
 */
-veterinarioRepository.save(new Veterinario("Fernando","fernando1234","Cirugia",24681012,3,"https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
-veterinarioRepository.save(new Veterinario("Laura","laura1234","Farmacologia",11111111,8,"https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
-veterinarioRepository.save(new Veterinario("Carlos", "carlos1234", "Dermatología", 98765432, 5, "https://www.shutterstock.com/image-photo/portrait-smiling-male-doctor-standing-600nw-1234848211.jpg"));
-veterinarioRepository.save(new Veterinario("Ana", "ana1234", "Neurología", 24681357, 4, "https://img.freepik.com/foto-gratis/enfermera-retrato-aislado-estudio_1303-29634.jpg?size=626&ext=jpg"));
-veterinarioRepository.save(new Veterinario("Miguel", "miguel1234", "Oncología", 12345678, 6, "https://www.shutterstock.com/image-photo/portrait-smiling-female-doctor-600nw-758594246.jpg"));
-veterinarioRepository.save(new Veterinario("Sofia", "sofia1234", "Cardiología", 55566677, 7, "https://www.shutterstock.com/image-photo/portrait-confident-young-female-doctor-600nw-1197014515.jpg"));
-veterinarioRepository.save(new Veterinario("Andres", "andres1234", "Oftalmología", 88899900, 2, "https://img.freepik.com/foto-gratis/retrato-medico-confianza_329181-6656.jpg?size=626&ext=jpg"));
-veterinarioRepository.save(new Veterinario("Gabriela", "gabriela1234", "Endocrinología", 32165487, 10, "https://www.shutterstock.com/image-photo/portrait-smiling-young-woman-doctor-600nw-2163539789.jpg"));
-veterinarioRepository.save(new Veterinario("Javier", "javier1234", "Traumatología", 98712345, 12, "https://www.shutterstock.com/image-photo/portrait-smiling-mature-male-doctor-600nw-756205785.jpg"));
-veterinarioRepository.save(new Veterinario("Lucía", "lucia1234", "Ginecología", 77788899, 9, "https://www.shutterstock.com/image-photo/portrait-smiling-female-doctor-600nw-1938421528.jpg"));
-veterinarioRepository.save(new Veterinario("Pablo", "pablo1234", "Cirugia", 66677788, 11, "https://www.shutterstock.com/image-photo/portrait-young-male-doctor-crossing-600nw-1444216072.jpg"));
-veterinarioRepository.save(new Veterinario("Elena", "elena1234", "Anestesiología", 12348765, 14, "https://www.shutterstock.com/image-photo/portrait-smiling-female-nurse-isolated-600nw-1720672754.jpg"));
-veterinarioRepository.save(new Veterinario("Roberto", "roberto1234", "Patología", 95175342, 3, "https://img.freepik.com/foto-gratis/retrato-joven-doctor_1303-29793.jpg?size=626&ext=jpg"));
-veterinarioRepository.save(new Veterinario("Marta", "marta1234", "Rehabilitación", 14725836, 13, "https://www.shutterstock.com/image-photo/young-doctor-isolated-600nw-171779937.jpg"));
-veterinarioRepository.save(new Veterinario("Valeria", "valeria1234", "Nutrición", 75395126, 6, "https://img.freepik.com/foto-gratis/medico-aislado_1303-29722.jpg?size=626&ext=jpg"));
-veterinarioRepository.save(new Veterinario("David", "david1234", "Infectología", 12365478, 1, "https://www.shutterstock.com/image-photo/portrait-young-male-doctor-crossing-600nw-1984612242.jpg"));
-veterinarioRepository.save(new Veterinario("Isabel", "isabel1234", "Urgencias", 96325874, 15, "https://www.shutterstock.com/image-photo/female-doctor-holding-clipboard-looking-600nw-1912046763.jpg"));
-veterinarioRepository.save(new Veterinario("Joaquín", "joaquin1234", "Cirugía general", 78945612, 4, "https://img.freepik.com/foto-gratis/joven-doctor-vistiendo-bata-laboratorio-estetoscopio_1303-29792.jpg?size=626&ext=jpg"));
-veterinarioRepository.save(new Veterinario("Patricia", "patricia1234", "Radiología", 85296374, 5, "https://www.shutterstock.com/image-photo/portrait-young-beautiful-doctor-isolated-600nw-171779968.jpg"));
-veterinarioRepository.save(new Veterinario("Alberto", "alberto1234", "Toxicología", 15935748, 8, "https://www.shutterstock.com/image-photo/portrait-mature-handsome-doctor-600nw-2112511542.jpg"));
+veterinarioRepository.save(new Veterinario("Fernando", "fernando1234", "Cirugia", 24681012, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Sofia", "sofia1234", "Toxicologia", 55566677, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Gabriela", "gabriela1234", "Toxicologia", 32165487, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Carlos", "carlos1234", "Rehabilitacion", 98765432, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Marta", "marta1234", "Rehabilitacion", 14725836, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Miguel", "miguel1234", "Radiologia", 12345678, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Andres", "andres1234", "Oftalmología", 88899900, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Joaquín", "joaquin1234", "Cirugia", 78945612,0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Alberto", "alberto1234", "Toxicologia", 15935748, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Laura", "laura1234", "Nutricion", 11111111, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Ana", "ana1234", "Neurología", 24681357, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Lucía", "lucia1234", "Rehabilitacion", 77788899, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Elena", "elena1234", "Anestesiologia", 12348765, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Javier", "javier1234", "Traumatología", 98712345, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Pablo", "pablo1234", "Cirugia", 66677788, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Roberto", "roberto1234", "Anestesiologia", 95175342, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("David", "david1234", "Anestesiologia", 12365478, 0, "https://www.shutterstock.com/image-photo/healthcare-medical-staff-concept-portrait-600nw-2281024823.jpg"));
+veterinarioRepository.save(new Veterinario("Valeria", "valeria1234", "Nutricion", 75395126, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Isabel", "isabel1234", "Toxicologia", 96325874, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
+veterinarioRepository.save(new Veterinario("Patricia", "patricia1234", "Radiologia", 85296374, 0, "https://img.freepik.com/foto-gratis/doctora-vistiendo-bata-laboratorio-estetoscopio-aislado_1303-29791.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1726531200&semt=ais_hybrid"));
 
-
-drogaRepository.save(new Droga("Propofol", 10500.05f, 150000.0f, 10, 20));
+/*drogaRepository.save(new Droga("Propofol", 10500.05f, 150000.0f, 10, 20));
 drogaRepository.save(new Droga("Fentanilo", 8500.30f, 120000.0f, 15, 25));
 drogaRepository.save(new Droga("Midazolam", 5000.00f, 90000.0f, 12, 18));
 drogaRepository.save(new Droga("Ketamina", 9500.10f, 140000.0f, 8, 16));
@@ -204,7 +208,7 @@ drogaRepository.save(new Droga("Morfina", 7800.40f, 110000.0f, 14, 22));
 drogaRepository.save(new Droga("Diazepam", 4200.50f, 60000.0f, 18, 28));
 drogaRepository.save(new Droga("Etomidato", 6200.20f, 95000.0f, 9, 19));
 drogaRepository.save(new Droga("Suxametonio", 3200.00f, 45000.0f, 25, 35));
-drogaRepository.save(new Droga("Rocuronio", 6800.65f, 99000.0f, 11, 21));
+drogaRepository.save(new Droga("Rocuronio", 6800.65f, 99000.0f, 11, 21));*/
 
 tratamientoRepository.save(new Tratamiento(drogaRepository.findById(1L).get(), generarFechaAleatoria(), mascotaRepository.findById(5L).get(), veterinarioRepository.findById(3L).get()));
 tratamientoRepository.save(new Tratamiento(drogaRepository.findById(2L).get(), generarFechaAleatoria(), mascotaRepository.findById(2L).get(),veterinarioRepository.findById(2L).get()));
@@ -217,7 +221,7 @@ tratamientoRepository.save(new Tratamiento(drogaRepository.findById(8L).get(), g
 tratamientoRepository.save(new Tratamiento(drogaRepository.findById(9L).get(), generarFechaAleatoria(), mascotaRepository.findById(2L).get(),veterinarioRepository.findById(12L).get()));
 tratamientoRepository.save(new Tratamiento(drogaRepository.findById(10L).get(), generarFechaAleatoria(), mascotaRepository.findById(3L).get(),veterinarioRepository.findById(5L).get()));
 
-
+administradorRepository.save(new Administrador(1234567890, "admin"));
 
         Cliente asociar = clienteRepository.findById(clienteRepository.findAll().get(0).getId()).get();
         for(Mascota mascot: mascotaRepository.findAll()){
@@ -234,6 +238,13 @@ tratamientoRepository.save(new Tratamiento(drogaRepository.findById(10L).get(), 
                 mascot.setCliente(cliente);
                 mascotaRepository.save(mascot);
             }
+        }
+
+        List<Veterinario> veterinarios = veterinarioRepository.findAll();
+        for (Veterinario veterinario : veterinarios) {
+            int numAtenciones = tratamientoRepository.findByVeterinarioId(veterinario.getId()).size();
+            veterinario.setNum_atenciones(numAtenciones);
+            veterinarioRepository.save(veterinario);
         }
     }
 

@@ -13,4 +13,7 @@ public interface TratamientoService {
     public void update(Tratamiento tratamiento);
 
     public List<Tratamiento> SearchByVeterinarioId(Long id);
+
+    Long countTotalTreatments();
+    Double calculateTotalTreatmentCost();
 }

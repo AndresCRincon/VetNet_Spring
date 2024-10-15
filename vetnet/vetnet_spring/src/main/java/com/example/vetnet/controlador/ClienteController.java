@@ -28,8 +28,8 @@ import com.example.vetnet.servicio.ClienteService;
 import org.springframework.web.bind.annotation.RequestBody;
 import jakarta.servlet.http.HttpSession;
 
-@RequestMapping("/cliente")
 @RestController
+@RequestMapping("/cliente")
 @CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 public class ClienteController {
 
@@ -78,9 +78,11 @@ public class ClienteController {
     }*/
 
     @PutMapping("/modificar/{id}")
-    public void actualizarCliente(@RequestBody Cliente cliente) {
-        clienteService.update(cliente);
+    public void actualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+    cliente.setId(id); 
+    clienteService.update(cliente);
     }
+
 
 
     @DeleteMapping("/eliminar/{id}")
@@ -106,9 +108,8 @@ public ResponseEntity<?> login(@RequestBody Cliente cliente, HttpSession session
     if (encontrado != null && encontrado.getPassword().equals(cliente.getPassword())) {
         session.setAttribute("cliente", encontrado);
         
-        // Crear un HashMap y devolver el ID y el mensaje como respuesta
         Map<String, Object> response = new HashMap<>();
-        response.put("id", encontrado.getId()); // Incluye el ID del cliente
+        response.put("id", encontrado.getId()); 
         response.put("message", "Login exitoso");
         
         return ResponseEntity.ok(response);
@@ -131,24 +132,9 @@ public ResponseEntity<?> login(@RequestBody Cliente cliente, HttpSession session
 
 
    @GetMapping("/cliente/mascotas/{id}")
-   public List<Mascota> mostrarMascotasCliente(@PathVariable Long clienteId) {
-       Cliente cliente = clienteService.SearchById(clienteId);
-       if (cliente != null) {
-           return cliente.getMascotas();
-       } else {
-           return new ArrayList<>(); 
-       }
-   }
-   
-
-    @GetMapping("/perfil")
-    public String mostrarPerfilCliente(HttpSession session, Model model) {
-    Cliente cliente = (Cliente) session.getAttribute("cliente");
-    if (cliente == null) {
-        return "redirect:/clinica";
-    }
-    model.addAttribute("cliente", cliente);
-    return "perfil_cliente";
+    public List<Mascota> mostrarMascotasCliente(@PathVariable("id") Long clienteId) {
+    Cliente cliente = clienteService.SearchById(clienteId);
+        return cliente.getMascotas();
     }
 
     

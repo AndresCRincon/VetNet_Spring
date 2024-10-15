@@ -1,7 +1,7 @@
 package com.example.vetnet.servicio;
 
 import java.util.List;
-
+import java.util.Map;
 
 import com.example.vetnet.entidad.Veterinario;
 
@@ -13,4 +13,6 @@ public interface VeterinarioService{
     public void update(Veterinario veterinario);
     
     Veterinario SearchByCedula(int cedula);
+
+    public Map<String, Long> getSpecialtiesDistribution();
 }

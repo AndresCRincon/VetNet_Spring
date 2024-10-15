@@ -1,40 +1,71 @@
 package com.example.vetnet.entidad;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Administrador {
-    private int mascotas_tratamiento;
-    private int num_atenciones;
-    private int precio_total;
 
-    public Administrador(int mascotas_tratamiento, int num_atenciones, int precio_total) {
-        this.mascotas_tratamiento = mascotas_tratamiento;
-        this.num_atenciones = num_atenciones;
-        this.precio_total = precio_total;
+    @Id
+    private int cedula;
+
+    private String password;
+    private int mascotasTratamiento;
+    private int numAtenciones;
+    private int precioTotal;
+
+    public Administrador() {}
+
+    public Administrador(int cedula, String password){
+        this.cedula = cedula;
+        this.password = password;
     }
 
-    public int getMascotas_tratamiento() {
-        return mascotas_tratamiento;
+    public Administrador(int cedula, String password, int mascotasTratamiento, int numAtenciones, int precioTotal) {
+        this.cedula = cedula;
+        this.password = password;
+        this.mascotasTratamiento = mascotasTratamiento;
+        this.numAtenciones = numAtenciones;
+        this.precioTotal = precioTotal;
     }
 
-    public void setMascotas_tratamiento(int mascotas_tratamiento) {
-        this.mascotas_tratamiento = mascotas_tratamiento;
+    public int getCedula() {
+        return cedula;
     }
 
-    public int getNum_atenciones() {
-        return num_atenciones;
+    public void setCedula(int cedula) {
+        this.cedula = cedula;
     }
 
-    public void setNum_atenciones(int num_atenciones) {
-        this.num_atenciones = num_atenciones;
+    public String getPassword() {
+        return password;
     }
 
-    public int getPrecio_total() {
-        return precio_total;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public void setPrecio_total(int precio_total) {
-        this.precio_total = precio_total;
+    public int getMascotasTratamiento() {
+        return mascotasTratamiento;
     }
 
+    public void setMascotasTratamiento(int mascotasTratamiento) {
+        this.mascotasTratamiento = mascotasTratamiento;
+    }
+
+    public int getNumAtenciones() {
+        return numAtenciones;
+    }
+
+    public void setNumAtenciones(int numAtenciones) {
+        this.numAtenciones = numAtenciones;
+    }
+
+    public int getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(int precioTotal) {
+        this.precioTotal = precioTotal;
+    }
 }

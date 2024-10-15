@@ -2,6 +2,7 @@ package com.example.vetnet.servicio;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.example.vetnet.entidad.Cliente;
@@ -43,4 +44,9 @@ public class MascotaServiceImpl implements MascotaService {
     public List<Mascota> SearchByClienteId(Long id) {
         return repo.findByClienteId(id);
     }
+
+    @Override
+    public Long countActivePets(){
+        return repo.countActivePets();
+    };
 }
